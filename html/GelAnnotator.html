@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html manifest="../openPLan.appcache">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>PLan Gel Annotator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/main.css">
+
+        
+<style scoped>
+.tall {display: table}
+.tall div {display: table-cell; vertical-align: top}
+.wide {}
+.wide div {width: 100%}
+</style>        
+</head>
+<body ontouchstart="" onload="onLoadPLan()"
+     onmouseover=""  onmouseup="" >
+       
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">openPLan &gt; Gel Annotator</h1>
+                <nav>
+                    <ul>
+                       <li><a href="../help/Gels.html" rel="help"
+                         title="Help with gels"
+                       >i</a></li>
+                       <li><a href="../html/Feeds.html"  
+                         title="News on a Protein of Interest"
+                       >News</a></li><li><a href="../html/Variants.html"  
+                         title="Protein Structure with Clinical Variation"
+                       >Variants</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div id="main" class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                    <h1>Gel Annotator</h1>
+                    <!-- TODO http://experiments.wemakesites.net/css3-inline-file-input.html -->
+                    
+                   
+                      <!-- TODO input type=range gamma -->
+                     
+                     Your gel image: <input type="file" id="fileInput" accept="image/jpg, image/jpeg, image/gif, image/png, image/bmp, image/tiff"
+                     title="Choose your gel image, or drag the image onto this page"
+                      />
+                    <script>if (!window.FileReader) {document.write('Sorry, your browser does not support dragging files to this page.'
+                    		+' This page has been tested in current Chrome, Firefox, and Internet Explorer 10.');}</script>
+                    
+                    </header>
+
+                    
+                    <footer>
+                        <h3>News about PLan</h3>
+                        <p>Later PLan will include a file store where you can back up your gels.</p>
+                    </footer>  
+                </article>
+
+                <noscript><aside>You need to enable javascript to use this page.
+                If you are using Internet Explorer, please click "Allow blocked content".
+                </aside></noscript>
+                    
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+        
+        <div id="canvasContainer" class="wide" title="Drag to outline a track, then type a comment" >
+            <canvas id="canvasOne" width="0" height="0">
+                            Sorry, your browser cannot display this page.
+            </canvas>
+            <div style="width: 100%; "> 
+                <table id="rectangles" style="width: 100%"><thead><tr><th>Track #</th><th style="width: 100%">Note</th></tr></thead><tbody >
+                    <!-- <th>0</th><td><input style="width: 100%" /></td> -->
+                </tbody>
+                </table>
+                <a  download="PLAn_Gel.eml" title="Download as .eml" onclick="save(this); return true" 
+                        ><img  src="../images/download.png" /></a>
+            </div>     
+        </div>
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3  > 
+                       Protein Lab Notebook (TM)
+                       <a href="mailto:chris.morris@stfc.ac.uk?subject=PLan problem with GelAnnotator.html" rel="help"
+                       style="min-width: 2em; background-image: url(../images/problem.png); background-size: 100% 100%; background-repeat: no-repeat;"
+                         title="Report a problem"
+                       >&nbsp;&nbsp;&nbsp;</a>
+                       <a href="mailto:chris.morris@stfc.ac.uk?subject=PLan question re GelAnnotator.html" rel="help"
+                         title="Ask a question"
+                       >&nbsp;?&nbsp;</a>
+                       <a href="mailto:chris.morris@stfc.ac.uk?subject=PLan like GelAnnotator.html" rel="help"
+                       style="min-width: 2em; background-image: url(../images/like.png); background-size: contain; background-repeat: no-repeat;"
+                         title="Tell us you like this page"
+                       >&nbsp;&nbsp;&nbsp;</a>
+                       
+                </h3>
+            </footer>
+        </div>
+<script>
+"use strict";
+function onLoadPLan() {
+    document.body.addEventListener("mouseup", onTouchEnd, false);
+    document.body.addEventListener("touchcancel", onTouchEnd, false);  
+    document.body.addEventListener('dragover', cancel, false);
+    document.body.addEventListener('drop', onDrop, false);
+}
+
+// handle files
+var img = new Image();
+
+function onDrop(e) {
+    e = e || window.event;
+    var dt    = e.dataTransfer;
+    var files = dt.files;
+    var file = files[0];
+    readFile(file);
+    return cancel(e);
+}
+document.getElementById('fileInput').onchange = function (e) {
+    e = e || window.event;
+    var file = document.getElementById('fileInput').files[0];
+    readFile(file);
+    return cancel(e);
+} 
+function readFile(file) {
+    if ('image/tiff'===file.type) {
+        alert("Please wait, converting tiff, size: "+file.size);
+        var reader = new FileReader();
+        reader.onerror=function(e) {alert(reader.error);};
+        reader.onload = onLoadTiff;
+        reader.readAsArrayBuffer( file );
+        console.log("loaded tiff");
+    } else {
+        img.src = URL.createObjectURL(file);
+    }
+}
+img.onload = function () {
+    canvas.width = img.width; 
+    canvas.height = img.height;
+    var windowWidth = window.innerWidth - 40;
+    // scale to window
+    if (img.width/img.height > windowWidth/window.innerHeight) {
+        canvas.width = windowWidth;
+        canvas.height = canvas.width * img.height/img.width;
+        // wide image, table goes below
+        document.getElementById("canvasContainer").className = 'wide';
+    } else {
+        canvas.height = window.innerHeight;
+        canvas.width = canvas.height * img.width/img.height;
+        // tall image,  put table beside
+        document.getElementById("canvasContainer").className = 'tall';
+    }
+    
+    // reset previous drawing
+    rectangles = [];
+    rectStart = null;
+    rectEnd = null;
+    pointerIsDown = false;
+    while (true) {
+        var rows = document.getElementById("rectangles").rows;
+        if (1===rows.length) {
+    	   break;// header row;
+        }
+        var tr = rows[rows.length-1];
+        tr.parentNode.deleteRow(-1);
+    }
+    
+    redraw();
+    canvas.scrollIntoView(true);
+    
+    // Maybe URL.revokeObjectURL(img.src);
+}
+
+
+
+var tiffCanvas = document.createElement('canvas');
+tiffCanvas.toBlob = tiffCanvas.toBlob || function(callback, type, args) {
+    var dataURI = this.toDataURL(type, args);
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for ( var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    var blob=  new Blob([ new Uint8Array(array) ], {
+        type : type || 'image/png'
+    });
+    callback(blob);
+    URL.revokeObjectURL(dataURI);
+};
+
+function onLoadTiff(e) {
+    try {
+        //TODO require(['lib/tiff.js'], function() {})
+        //TODO use web worker, this is slow
+        var tiffParser = new TIFFParser();
+        tiffParser.parseTIFF(e.target.result, tiffCanvas);
+        console.log('parsed tiff');        
+        // var url = tiffCanvas.toDataURL();  /*
+        // this would be more efficient, but Chrome does not yet support toBlob:
+        tiffCanvas.toBlob(function(blob) {
+            var url = URL.createObjectURL(blob);
+            img.src = url;
+            URL.revokeObjectURL(url);
+          });       
+    } catch (err) {
+        console.log('Error: '+err.message);
+        // alert does not work here
+        //TODO put this somewhere more visible
+        var container = document.getElementById('main');
+        var div = document.createElement("aside");
+        div.textContent = 'Sorry, there has been an error reading your tif file: '+err.message;
+        container.appendChild(div);
+    }  
+}
+
+
+var URL = window.URL || window.webkitURL; 
+
+// handle drawing
+var rectangles = [];
+var rectStart = null;
+var rectEnd = null;
+var pointerIsDown = false;
+
+function onTouchStart(e) {
+    pointerIsDown = true;
+    rectStart = getPoint(e);
+    rectEnd = rectStart;    
+}
+function deleteRectangle(td) {
+     var index = td.firstChild.nodeValue.valueOf() - 1;
+     var tr = td.parentNode;
+     var tbody = tr.parentNode; // table in Chrome, tbody in IE
+     var rows = tbody.rows;     
+     rectangles.splice(tr.rowIndex-1 , 1);  
+     tbody.deleteRow(tr.sectionRowIndex);  
+     var i = 0;
+     if ('THEAD'==rows[0].parentNode.nodeName) {i=1;} //IE
+     for (; i < rows.length; i++ ) {
+        var row = rows.item(i);
+        row.firstChild.firstChild.data = ''+row.rowIndex;
+     }
+     console.log(tbody.parent.parent.offsetHeight); // trigger reflow
+     redraw();
+}
+function onTouchEnd() {
+    pointerIsDown = false;  
+    if (null!=rectStart && null!=rectEnd) {
+        rectangles.push([ Math.min(rectStart[0], rectEnd[0]) , Math.min(rectStart[1], rectEnd[1]),  Math.max(rectStart[0], rectEnd[0]), Math.max(rectStart[1], rectEnd[1])]);
+        var row = document.getElementById('rectangles').insertRow(-1);  
+        row.insertCell().innerHTML = rectangles.length
+            +'<a href="#" onclick="deleteRectangle(this.parentNode); return false;" title="Delete this note" ><img style="height: 2em" src="../images/delete.png" /></a>';
+        var td = row.insertCell();
+        td.setAttribute("contentEditable", true);
+        //was td.innerHTML = '<input onchange="valueToAttribute(this)" style="width: 100%"  />'; //TODO or editable element
+        td.focus();
+        redraw();
+    }
+    rectStart = null;
+    rectEnd = null; 
+}
+function onTouchMove(e) {
+    if (!pointerIsDown) {return;}
+    rectEnd = getPoint(e);
+    context.fillStyle = 'rgba(242,66,55, 0.1)';
+    context.globalCompositeOperation = 'source-over'; 
+    context.fillRect(rectStart[0], rectStart[1], rectEnd[0]-rectStart[0], rectEnd[1]-rectStart[1]);
+}
+/* TODO function gammaAdjust(gamma) {
+    var imageData = context.getImageData(0, 0, width, height);
+    var data = imageData.data;
+    var len = data.length;
+    var i, red, green, blue, alpha;
+
+    for(i = 0; i < len; i += 4) {
+        data[i] = 255 * Math.pow(( data[i] / 255), gamma);
+        data[i+1] = 255 * Math.pow(( data[i+1] / 255), gamma);
+        data[i+2] = 255 * Math.pow(( data[i+2] / 255), gamma);
+        //alpha = data[i + 3];
+    }
+    context.putImageData(imageData, 0, 0);
+} */
+
+var canvas = document.getElementById('canvasOne');            
+var context = canvas.getContext('2d');
+canvas.addEventListener("mousedown", onTouchStart, false);
+canvas.addEventListener("mousemove", onTouchMove, false);
+canvas.addEventListener("touchstart", onTouchStart, false);
+canvas.addEventListener("touchmove", onTouchMove, true);
+canvas.addEventListener("touchend", onTouchEnd, false);
+function redraw() {
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+    context.lineWidth = 2;
+    context.strokeStyle = 'rgba(242,66,55,1.0)';
+    context.font = '2em Vollkorn';
+    for (var i=0; i < rectangles.length; i++){    
+        var rectangle = rectangles[i];
+        if (i==rectangles.length-1) {
+            context.lineWidth = 5;        
+        }
+        context.strokeRect(rectangle[0], rectangle[1], rectangle[2]-rectangle[0], rectangle[3]-rectangle[1]);
+        context.strokeText(''+(i+1), rectangle[0]+5, rectangle[3]-10);
+        //TODO no, lineJoin="miter" for bottom left and top right, lineJoin="round" for others
+    }
+}
+
+
+ 
+            
+</script>
+<!-- TODO no, use require -->
+        <script src="../js/lib/tiff.js"></script>
+        <script src="../js/PLan.js"></script> 
+        <script src="../js/download.js"></script>
+    </body>
+</html>

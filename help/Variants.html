@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>PLan Variants Help</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="/js/lib/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body ontouchstart=""  onmouseover="" >
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">PLan Help &gt; Variant Sequences</h1>
+                <nav>
+                    <ul>
+                        <li><a href="Feeds.html">News</a></li>
+                        <li><a href="Gels.html">Gels</a></li>
+                        <li><a href="Browsers.html">Browsers</a></li>
+                        <li><a href="PLan.html">About</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                    <h1>Viewing a Structure with Clinical Variants</h1>
+                    <p>PLan uses the 
+                    <a href="http://biasmv.github.io/pv/">PV structure viewer</a> by Marco Biasini to display PDB structures.
+                    If the structure includes human protein, PLan fetches information from 
+                    <a href="http://www.ncbi.nlm.nih.gov/clinvar/">ClinVar</a>
+                    about the clinical consequences of mutations.
+                    </p>
+                    </header>
+                    <section>
+                        <h3>Getting a Structure</h3>
+                       <p>Go to the 
+                    <a class="red-on-white" href="../html/Variants.html">Structure Viewer</a>
+                    and type the accession number of the PDB entry you are interested in,
+                    then press enter.
+                    </p>  
+                        <p>
+                        PLan will get the structure and display it.
+                        A table on the page lists the chains in the structure, 
+                        and shows how each corresponds to the reference sequence in Uniprot.
+                        </p>  
+                    </section>
+                     <section>
+                        <h3>Variants</h3>
+                        <p>For each chain in the structure, PLan finds the name of the gene,
+                        and looks it up in ClinVar. Getting and processing this data can take up to a minute.    
+                        An aside on the page reports PLan's progress.                    
+                        </p>  
+                        <p>Some of the mutations found are single amino acid substitutions.
+                        These are all listed in a table. 
+                         Each residue in the structure is coloured red if substitutions at that position are known to be pathogenic,
+                        green if known to be benign. It will be coloured yellow if 
+                        there are known substitutions of unknown effect, or if
+                        both pathogenic and benign substitutions are found.
+                        Substitutions cannot be displayed if that residue was truncated from the chain.
+                        </p>  
+                        <p>                        
+                        The following variations are ignored: copy number variations,
+                        deletions, frame shifts, and synonymous codon substitutions. 
+                        If a variation cannot be classified as one of these, 
+                        but PLan cannot recognise it as a single amino acid subsitution,
+                        then PLan cannot display it.
+                        Such variations are ignored completely if marked as benign
+                        or of unknown significance.
+                        Pathogenic ones are added to the table.
+                        To check for these, click the arrow to expand this table.</p>                    
+                    </section>
+                    
+                    <footer>
+                        <h3>Not for clinical use</h3>
+                        <p>
+                        This feature should not be used to inform medical decisions.</p>
+                    </footer>
+                </article>
+
+        
+                
+        <aside>
+              <h3  > 
+                       Request for Feedback
+                       <a href="mailto:chris.morris@stfc.ac.uk?subject=PLan problem with Variants" rel="help"
+                       style="min-width: 2em; background-image: url(../images/problem.png); background-size: 100% 100%; background-repeat: no-repeat;"
+                         title="Report a problem"
+                       >&nbsp;&nbsp;&nbsp;</a>
+                       <a href="mailto:chris.morris@stfc.ac.uk?subject=PLan question re Variants" rel="help"
+                         title="Ask a question"
+                       >&nbsp;?&nbsp;</a>
+                       <a href="mailto:chris.morris@stfc.ac.uk?subject=PLan like Variants" rel="help"
+                       style="min-width: 2em; background-image: url(../images/like.png); background-size: contain; background-repeat: no-repeat;"
+                         title="Tell us you like this feature"
+                       >&nbsp;&nbsp;&nbsp;</a>
+                       
+                </h3>
+                <p>The PDB and ClinVar are both large and diverse. It is likely that this prototype fails for some records.
+                Please get in touch if you have trouble, by clicking one of the icons above.</p>
+         </aside>     
+         <aside>
+              <p> 
+                    Thanks to <a href="http://www.biomedbridges.eu">BioMedBridges</a>
+                    for support to develop this feature.</p>
+              <img src="http://www.biomedbridges.eu/sites/biomedbridges.eu/themes/custom/biomedbridges/logo.png"
+                   style="width: 100%"
+                />
+         </aside>  
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>Protein Lab Notebook (TM)</h3>
+            </footer>
+        </div>
+
+    </body>
+</html>

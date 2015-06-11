@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>PLan Primer Designer Help</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="/js/lib/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body ontouchstart=""  onmouseover=""  >
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">PLan Help &gt; Primers</h1>
+                <nav>
+                    <ul>
+                        <li><a href="Gels.html">Feeds</a></li>
+                        <li><a href="Gels.html">Gels</a></li>
+                        <li><a href="Browsers.html">Browsers</a></li>
+                        <li><a href="PLan.html">About</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                    <h1>Designing Primers with PLan</h1>
+                    <p><a href="../html/PrimerDesigner.html">This page</a> helps you design primers for amplifying a target sequence.
+                    </p>
+                    </header>
+                    <section>
+                        <h3>Providing the target sequence</h3>
+                          <p>You can provide the DNA sequence alone, or a FASTA representation of it.
+                          You provide it in one of the following ways.
+                          </p>
+                         <ul>
+                           <li>Paste the text into the box on the page.</li>
+                           <li>(Soon) Drag the file from a folder and drop it the page.</li>
+                           <li>(Soon) Click the button and open the file.</li>
+                           <li>(Soon) Choose a database and provide the accession number.</li>                           
+                         </ul>
+                    </section><section>
+                        <h3>(Optional) Specifying PCR conditions</h3>
+                        <p>There is a form defining the PCR conditions you intend to use.
+                        Clcik where it says "PCR Conditions" to see it.
+                        This is used to calculate the Tm of the primers.
+                        The defaults are often appropriate, but you can also change them.
+                        Please contact us if you want us to include other options in this form.
+                        </p>
+                    </section><section>
+                        <h3>Changing start, end, and length of primers</h3>
+                        <p>When you have supplied the target sequence, 
+                        PLan will suggest primer sequences suitable for amplifying the full length sequence.
+                        If you change the start or end codon, then it will recalculate them.
+                        </p>
+                        <p>The suggested primers have a melting temperature greater that the minimum Tm you requested,
+                        but no more than 5C above it. If possible, they also end in C or G. 
+                        To lengthen a primer, click on it. To shorten a primer, right click on it. 
+                        </p>
+                    </section><section>
+                        <h3>Designing extra primers</h3>
+                        <p>To add another forward or reverse primer for a given target, click "+", 
+                        then set the start or end codon.
+                        </p>
+                    </section><section>
+                        <h3>Designing primers for several targets</h3>
+                        <p>If you supply a FASTA file representing several targets, 
+                        the table will contain primers for all of them. 
+                        </p>
+                        <p>These primers are all designed using the same conditions,
+                        so it will be possible to perform the PCR processes together.</p>
+                    </section><section>
+                        <h3>Potential problems in PCR</h3>
+                        <p>For each primer, PLan reports the Tm of a possible hairpin.
+                        If you put your mouse over this, PLan will display the alignment of the hairpin. 
+                        </p>
+                        <p>For each target, PLan reports the Tm of a possible primer dimer.
+                        If you have designed more than two primers,
+                        the number reported is the highest Tm of any pair of 
+                        a forward primer and reverse primer. 
+                        If you put your mouse over this, PLan will display the alignment of the primer dimer.
+                        </p>
+                        <p>
+                        The annealing temperature that you use should be higher 
+                        than the worst hairpin or primer dimer in the reactions you are performing. 
+                        </p>
+                    </section><section>
+                        <h3>Saving</h3>
+                        <p>Click  "<img style="height: 1em" src="../images/download.png" />". 
+                        The page will be saved as a .eml file.
+                        You can open this file in your email program, or in MS Word.
+                        If you change the extension to ".xls"
+                        then you can also open it with MS Excel.</p>
+                        <!-- <p>Whichever browser you are using, you can also edit your save files with 
+                        <a href="http://wizbrother.com/htmleditor/">WizHtmlEditor</a>.
+                        </p> -->                        
+                    </section>
+                    
+                    
+                    <footer>
+                        <h3>Future work</h3>
+                        <p>Later, PLan will support the design of mutagenic primers, 
+                        and also allow you to upload details of your primers
+                        and record where they are in your freezers.</p>
+                    </footer>
+                </article>
+
+               
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>Protein Lab Notebook (TM)</h3>
+            </footer>
+        </div>
+
+    </body>
+</html>

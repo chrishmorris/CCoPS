@@ -1,0 +1,39 @@
+CACHE MANIFEST
+# manifest for openPLan web app
+
+# TODO revision number
+# TODO AddType text/cache-manifest .appcache
+# TODO Must-Revalidate
+
+CACHE:
+/html/GelAnnotator.html
+/html/Feeds.html
+/html/PrimerDesigner.html
+
+/css/main.css
+/css/normalize.css
+/css/vollkorn-regular-webfont.woff 
+
+/images/delete.png
+/images/download.png
+/images/like.png
+/images/logo90x60/png
+/images/problem.png
+/images/offline.png
+
+/js/lib/tiff.js
+/js/dna/js
+/js/download.js
+/js/PLan.js
+
+FALLBACK: 
+/images/ /images/offline.png
+/ /help/offline.html
+
+NETWORK:
+# news
+*
+
+CACHE:
+
+

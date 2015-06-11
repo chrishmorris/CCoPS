@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>PLan Style Guide</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="/js/lib/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body ontouchstart=""  onmouseover="" >
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">PLan Help &gt; Style Guide</h1>
+                <nav><ul><li>
+                    <a href="#">nav ul li a</a>
+                </li>
+                <li><a href="#">nav ul li a</a></li>
+                <li><a href="#">nav ul li a</a></li></ul></nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                    <h1>PLan User Interaction Style</h1>
+                    <p>The key values for PLan's user interface are:</p>
+                    <ul>
+                      <li>Keeping out of the way</li>
+                      <li>Few required fields, data entry is optional</li>
+                      <li>Intelligent defaults</li>
+                      <li>Plain: users' attention will be on the science not the interaction</li>
+                      <li>Pleasant; not ugly</li>
+                      <li>No learning curve; can be used without tuition</li>
+                      <li>Shortcuts for expert users</li>
+                      <li>Answers are on the screen before the question is asked</li>
+                      <li>Modifiable; reskinning should not need a lot of resource</li></ul>
+                    </header>
+                    <section>
+                        <h3>PLan colours: White</h3>
+                        <p>This is black text on "PLan White" #eee. 
+                        Most content should be presented like this, especially the user's data. </p>
+                    <p class="red-on-white">This is "PLan red" text on "PLan White".
+                    Most metadata should be presented like this.<a  href="#">This is a standard link.</a></p>
+                    </section>
+                    <section>
+                        <h2>PLan colours: Red</h2>
+                        <p class="red">This is white text on "PLan Red" rgb(242, 55, 65).
+                        Most of the page framework should be presented like this,
+                        including standard navigation menus.
+                       <a class="black-on-red" href="#">Use black text on "PLan Red" only for links.</a>
+                       </p>
+                    </section>
+                    <section>
+                        <h2>PLan colours: Black</h2>
+                        <p class="black">This is white text on "PLan Black" #333.
+                           <a class="red-on-black" href="#">Use "PLan red" text on "PLan Black" only for links.</a>
+                        </p>
+                        </section>
+                    <section><h2>Logo</h2>
+                     
+                      <p> <a href="../images/logo900x600.png"><img style="float: left; "
+                      title="Logo for Protein Lab Notebook"
+                      src="../images/logo90x60.png" /></a>The logo is available in several forms, including favicons.
+                      On most pages, it should appear only in the footer.
+                       If you want to change it, edit the SVG. 
+                      Unfortunately no browsers render the SVG correctly,
+                      so use the PNGs in web pages.
+                      </p>
+                    </section>
+                    <section>
+                      <h2>Icons</h2>
+                      <p>If icons need letters in, the font is Amaranth.
+                      This is the icon for help: <a rel="help">&nbsp;i&nbsp; </a></p>
+                    </section>
+                    <footer>
+                        <h3>Other styles</h3>
+                        <p>The font for PLan is Vollkorn by Friedrich Althausen, available under the 
+                        <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL</a>. 
+                        It is used for content, metadata, and page framework.</p>
+                        <p>All boxes have slightly rounded corners at top left and bottom right,
+                        but square corners at bottom left and top right.</p>
+                    <p>The background of the page is #ccc. 
+                    Other shades of grey can be used for decorative purposes.
+                    Do not assume that all users can see the difference between PLan Red and grey.</p>
+                    <p>All pages must flow appropriately for smaller and larger screens.</p>
+                    
+                    </footer>
+                </article>
+
+                <aside  >
+                    <h3>About Protein Lab Notebook (PLan)</h3>
+                    <p>PLan is an electronic laboratory notebook for recombinant protein expression. 
+                    It will be embedded as thoroughly as possible in working life,
+                    blurring the difference between “using PLan” and “getting on with the job”.
+                    It will use the same database as PiMS,
+                    but provide a different user experience, with a smooth on ramp.</p>
+                </aside>
+                <aside tabindex="1" >
+                    <h3>Drawing attention to a page element</h3>
+                    <p>3D effects are used to draw a user's attention to a field that has the focus,
+                    or is otherwise important. This aside is an example. 
+                    Also try hovering over the links on this page. </p>
+                    <p>Elements change colour when clicked - try the links on this page.</p>
+                </aside>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>Protein Lab Notebook (TM)</h3>
+            </footer>
+        </div>
+
+    </body>
+</html>

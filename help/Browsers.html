@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>PLan Browsers</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="/js/lib/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body ontouchstart=""  onmouseover="" >
+        
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">PLan Help &gt; Browsers</h1>
+                <nav>
+                    <ul>
+                        <li><a href="Feeds.html">News</a></li>
+                        <li><a href="Gels.html">Gels</a></li>
+                        <li><a href="Variants.html">Variants</a></li>
+                        <li><a href="PLan.html">About</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                    <h1>Browsers for PLan</h1>
+                    <p>PLan is tested in current Chrome, Firefox, and in Internet Explorer 10.
+                    Please get in touch if you have problems on any of these platforms.
+                    </p>
+                    </header>
+                    
+                    <section><h3>Making a shortcut to PLan</h3>
+                    <p>First visit your favourite page in PLan, and bookmark it. Then drag the bookmark to the desktop.</p>
+                    </section>
+                    
+                    <script>var problem = true;</script>
+                    <section><h3>Your network connection</h3>
+                        <p>You can install a copy of PLan as a local web app. 
+                        Parts of PLan work even if you have no network connection. Other parts require you to be online.
+                        </p>                 
+                        <p>
+                        <script>if (navigator.onLine) {
+                            document.write('OK: you are online now.');
+                        } else if (false===navigator.onLine) {
+                            document.write('You are not online now.');
+                            problem = true;
+                        } else {
+                            document.write('Your browser does  not report whether you are online or not.');
+                            problem = true;
+                        }
+                        </script>
+<!-- could also window.applicationCache.addEventListener("error", function(e) {
+  alert("Error fetching manifest: a good chance we are offline");
+}); -->
+                        </p>                       
+                    </section>
+                    <section><h3>Your browser</h3>
+                    <!--[if IE]>
+    <p>You are using IE9 or earlier. Parts of PLan will not work with this browser. Please consider updating it.</p>
+                    <![endif]-->
+                    
+                        <p>The list below give some details on the functionality of the browser you are currently using.
+                        </p>
+                        <canvas width="0" height="0">Problem: Your browser does not support Canvas.<script>problem=true;</script></canvas>    
+                        <ul>                    
+                        <p><script type="application/javascript;version=1.8">                        
+                            document.write('<li>OK: You have javascript 1.8.</li>');
+                            var problem = false;
+                        </script><script language="javascript1.5">                        
+                            document.write('<li>OK: You have javascript 1.5.</li>');
+                            var problem = false;
+                        </script>
+                        <script>if (Boolean(window.FileReader)) {
+                            document.write('<li>OK: your browser can read files.</li>');
+                        } else {
+                            document.write('<li>Problem: Your browser cannot read files.</li>');
+                            problem = true;
+                        }
+                        if (Boolean(window.applicationCache)) {
+                            document.write('<li>OK: your browser can download and install a web app.</li>');
+                        } else {
+                            document.write('<li>Problem: Your browser cannot download and install a web app.</li>');
+                            problem = true;
+                        }
+                        if ('open' in document.createElement('details')) {
+                            document.write('<li>OK: your browser can show a collapsible box with summary and details.</li>');
+                        } else {
+                            document.write('<li>Problem: Your browser cannot show a collapsible box with summary and details.</li>');
+                            problem = true;
+                        }; 
+                        if (Boolean(window.WebGLRenderingContext)) {
+                            document.write('<li>OK: your browser can show WebGL images.</li>');
+                        } else {
+                            document.write('<li>Problem: Your browser does not support WebGL.</li>');
+                            problem = true;
+                        }; 
+                        </script>
+                        </ul>
+                        <script>
+                        if (problem) {document.write('<p>Parts of PLan will not work with this browser. Please consider updating it.</p>');}</script>
+                       
+                    </section>
+                    
+                    
+                    
+                    <footer>
+                        <h3>Future developments</h3>
+                        <p>PLan will also be supported on Android, Windows Phone, and iOS.</p>
+                    </footer> 
+                </article>
+
+               
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+            <div class="footer-container"><footer class="wrapper">
+                <h3>Protein Lab Notebook (TM)</h3>
+            </footer></div>
+       
+
+    </body>
+</html>
